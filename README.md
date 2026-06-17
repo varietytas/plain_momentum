@@ -1,3 +1,5 @@
+11.06.2026 Nasdaq-100 tickers list.
+
 close.parquet
 volume.parquet
         │
@@ -41,9 +43,3 @@ momentum/
 │   └── research.ipynb
 │
 └── main.py
-
-Total Return: 2571.59%
-CAGR: 34.91%
-Sharpe: 1.22
-Volatility: 27.62%
-Max DD: -37.10%
