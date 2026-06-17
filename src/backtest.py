@@ -14,6 +14,8 @@ class BacktestResult:
     costs: pd.Series
 
 
+#TODO: Abstract away market data (maybe some MarketData class)
+#TODO: Abstract away signal (signal df itself OR the choice of signal function) 
 def run_backtest(
         close: pd.DataFrame,
         lookback: int = cfg.LOOKBACK,
@@ -22,7 +24,7 @@ def run_backtest(
         transaction_cost: float = cfg.TRANSACTION_COST
     ) -> BacktestResult:
 
-    signal = sig.momentum(close, lookback)
+    signal = sig.skipmonth_momentum(close, lookback)
 
     returns = close.pct_change()
 
