@@ -1,6 +1,5 @@
 import src.config as cfg
-from src.data import OHLCVData 
-import src.signals as sig
+from src.data import OHLCVData
 import src.portfolio as prtf
 
 from dataclasses import dataclass
