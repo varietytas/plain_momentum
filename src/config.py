@@ -2,7 +2,7 @@ LOOKBACK = 126  # Days
 
 REBALANCE = 21  # Days
 
-TOP_QUANTILE = 0.15
+TOP_QUANTILE = 0.10
 
 TRANSACTION_COST = 0.0005     # Fraction of trade (%/100)
 

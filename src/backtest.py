@@ -15,16 +15,13 @@ class BacktestResult:
     costs: pd.Series
 
 
-#TODO: Abstract away signal (signal df itself OR the choice of signal function) 
 def run_backtest(
         md: OHLCVData,
-        lookback: int = cfg.LOOKBACK,
+        signal: pd.DataFrame,
         rebalance: int = cfg.REBALANCE,
         top_quantile: float = cfg.TOP_QUANTILE,
         transaction_cost: float = cfg.TRANSACTION_COST
     ) -> BacktestResult:
-
-    signal = sig.skipmonth_momentum(md.close, lookback)
 
     returns = md.close.pct_change()
 
