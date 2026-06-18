@@ -10,7 +10,7 @@ TICKERS_FILE = path.join(BASE_DIR, 'data', 'tickers.csv')
 START_DATE = '2015-01-01'
 END_DATE = '2025-12-31'
 
-
+#TODO: Test that it works on arbitrary set of tickers
 tickers = pd.read_csv(TICKERS_FILE)['Symbol'].tolist()
 
 print(f'[✅] Loaded {len(tickers)} tickers.')

@@ -1,4 +1,5 @@
 import src.config as cfg
+from src.data import OHLCVData 
 import src.signals as sig
 import src.portfolio as prtf
 
@@ -14,31 +15,30 @@ class BacktestResult:
     costs: pd.Series
 
 
-#TODO: Abstract away market data (maybe some MarketData class)
 #TODO: Abstract away signal (signal df itself OR the choice of signal function) 
 def run_backtest(
-        close: pd.DataFrame,
+        md: OHLCVData,
         lookback: int = cfg.LOOKBACK,
         rebalance: int = cfg.REBALANCE,
         top_quantile: float = cfg.TOP_QUANTILE,
         transaction_cost: float = cfg.TRANSACTION_COST
     ) -> BacktestResult:
 
-    signal = sig.skipmonth_momentum(close, lookback)
+    signal = sig.skipmonth_momentum(md.close, lookback)
 
-    returns = close.pct_change()
+    returns = md.close.pct_change()
 
     weights = pd.DataFrame(
-        index=close.index,
-        columns=close.columns,
+        index=md.close.index,
+        columns=md.close.columns,
         dtype=float
     )
 
-    rebalance_dates = close.index[::rebalance]
+    rebalance_dates = md.close.index[::rebalance]
 
     # Transaction costs
-    costs = pd.Series(0.0, index=close.index)
-    prev_weights = pd.Series(0.0, index=close.columns)
+    costs = pd.Series(0.0, index=md.close.index)
+    prev_weights = pd.Series(0.0, index=md.close.columns)
 
     # Building weights for rebalance dates
     for date in rebalance_dates:
