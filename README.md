@@ -117,7 +117,7 @@ See [`main.ipynb`](main.ipynb) for the same flow.
 | $q$ | top quantile selected long |
 | $\kappa$ | per-unit linear transaction cost |
 | $r_f$ | annual risk-free rate |
-| $\operatorname{std}()$ | sample standard deviation, `ddof = 1` |
+| $\text{std}()$ | sample standard deviation, `ddof = 1` |
 
 Annualization uses 252 trading days per year.
 
@@ -132,7 +132,7 @@ $$M_{i,t} = \frac{P_{i,t}}{P_{i,t-L}} - 1$$
 **2. Risk-adjusted momentum** — momentum scaled by its own return volatility.
 
 $$M^{\text{ra}}_{i,t} = \frac{P_{i,t}/P_{i,t-L} - 1}{\sigma_{i,t}}, \qquad
-\sigma_{i,t} = \operatorname{std}\!\big(\{r_{i,s}\}_{s=t-L+1}^{t}\big)$$
+\sigma_{i,t} = \text{std}\!\big(\{r_{i,s}\}_{s=t-L+1}^{t}\big)$$
 
 **3. Skip-month momentum** — drops the most recent month ($S$ days) to sidestep
 short-term reversal.
@@ -143,7 +143,7 @@ $$M^{\text{skip}}_{i,t} = \frac{P_{i,t-S}}{P_{i,t-L}} - 1$$
 
 $$M^{\text{ra,skip}}_{i,t} = \frac{P_{i,t-S}/P_{i,t-L} - 1}{\sigma^{\text{skip}}_{i,t}},
 \qquad
-\sigma^{\text{skip}}_{i,t} = \operatorname{std}\!\big(\{r_{i,s}\}_{s=t-L+1}^{t-S}\big)$$
+\sigma^{\text{skip}}_{i,t} = \text{std}\!\big(\{r_{i,s}\}_{s=t-L+1}^{t-S}\big)$$
 
 ### Portfolio selection
 
@@ -156,12 +156,14 @@ $$n_\tau = \max\!\big(1,\ \lfloor N_\tau \, q \rfloor\big).$$
 
 Each winner receives an equal weight; everything else is zero:
 
-$$w_{i,\tau} =
+$$
+w_{i,\tau} =
 \begin{cases}
-\dfrac{1}{n_\tau} & i \in \mathcal{W}_\tau \\[6pt]
-0 & \text{otherwise}
-\end{cases},
-\qquad \sum_{i} w_{i,\tau} = 1.$$
+    \dfrac{1}{n_\tau} & i \in \mathcal{W}_\tau \\
+    0 & \text{otherwise}
+\end{cases}
+\qquad \sum_{i} w_{i,\tau} = 1.
+$$
 
 ### Holding and execution lag
 
@@ -212,8 +214,8 @@ sample length in years:
 
 $$\text{Total Return} = E_T - 1, \qquad \text{CAGR} = E_T^{\,1/y} - 1,$$
 
-$$\text{Volatility} = \operatorname{std}(r^{p}) \cdot \sqrt{252}, \qquad
-\text{Sharpe} = \frac{\overline{\,r^{p} - r_f/252\,}}{\operatorname{std}(r^{p})} \cdot \sqrt{252},$$
+$$\text{Volatility} = \text{std}(r^{p}) \cdot \sqrt{252}, \qquad
+\text{Sharpe} = \frac{\overline{\,r^{p} - r_f/252\,}}{\text{std}(r^{p})} \cdot \sqrt{252},$$
 
 $$\text{MaxDD} = \min_{t} \frac{E_t - \max_{s \le t} E_s}{\max_{s \le t} E_s}.$$
 
