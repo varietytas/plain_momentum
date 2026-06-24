@@ -29,6 +29,7 @@ def visualize(
     axes[0].legend(loc='upper left')
 
     axes[1].plot(result.portfolio_returns, color='darkred', linewidth=0.5)
+    axes[1].axhline(0.0, color='black', linestyle='--', linewidth=2)
     axes[1].set_xlabel('Year', fontsize=12)
     axes[1].set_title('Daily Returns', fontweight='bold')
     axes[1].grid(alpha=0.5)
