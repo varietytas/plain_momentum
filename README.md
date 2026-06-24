@@ -132,7 +132,7 @@ $$M_{i,t} = \frac{P_{i,t}}{P_{i,t-L}} - 1$$
 **2. Risk-adjusted momentum** — momentum scaled by its own return volatility.
 
 $$M^{\text{ra}}_{i,t} = \frac{P_{i,t}/P_{i,t-L} - 1}{\sigma_{i,t}}, \qquad
-\sigma_{i,t} = \text{std}\!\big(\{r_{i,s}\}_{s=t-L+1}^{t}\big)$$
+\sigma_{i,t} = \text{std}\big(\{r_{i,s}\}_{s=t-L+1}^{t}\big)$$
 
 **3. Skip-month momentum** — drops the most recent month ($S$ days) to sidestep
 short-term reversal.
@@ -143,23 +143,23 @@ $$M^{\text{skip}}_{i,t} = \frac{P_{i,t-S}}{P_{i,t-L}} - 1$$
 
 $$M^{\text{ra,skip}}_{i,t} = \frac{P_{i,t-S}/P_{i,t-L} - 1}{\sigma^{\text{skip}}_{i,t}},
 \qquad
-\sigma^{\text{skip}}_{i,t} = \text{std}\!\big(\{r_{i,s}\}_{s=t-L+1}^{t-S}\big)$$
+\sigma^{\text{skip}}_{i,t} = \text{std}\big(\{r_{i,s}\}_{s=t-L+1}^{t-S}\big)$$
 
 ### Portfolio selection
 
 Long-only, evaluated on each rebalance date $\tau$. Let
-$\mathcal{A}_\tau$ be the assets with a non-missing signal at $\tau$,
-$N_\tau = |\mathcal{A}_\tau|$, and let $\mathcal{W}_\tau \subseteq \mathcal{A}_\tau$ be
+$A_\tau$ be the assets with a non-missing signal at $\tau$,
+$N_\tau = |A_\tau|$, and let $W_\tau \subseteq A_\tau$ be
 the $n_\tau$ assets with the highest signal values, where
 
-$$n_\tau = \max\!\big(1,\ \lfloor N_\tau \, q \rfloor\big).$$
+$$n_\tau = \max\big(1,\ \lfloor N_\tau \, q \rfloor\big).$$
 
 Each winner receives an equal weight; everything else is zero:
 
 $$
 w_{i,\tau} =
 \begin{cases}
-    \dfrac{1}{n_\tau} & i \in \mathcal{W}_\tau \\
+    \dfrac{1}{n_\tau} & i \in W_\tau \\
     0 & \text{otherwise}
 \end{cases}
 \qquad \sum_{i} w_{i,\tau} = 1.
@@ -167,7 +167,7 @@ $$
 
 ### Holding and execution lag
 
-Weights are set only on rebalance dates ($\tau \in \mathcal{T}$, every $R$ days) and
+Weights are set only on rebalance dates ($\tau \in T$, every $R$ days) and
 held constant in between (forward fill). Write $\tilde{w}_{i,t}$ for that
 forward-filled weight. To prevent look-ahead bias, the held weight vector is lagged one
 day before being applied, so the weight acting on day $t$ is
@@ -221,7 +221,7 @@ $$\text{MaxDD} = \min_{t} \frac{E_t - \max_{s \le t} E_s}{\max_{s \le t} E_s}.$$
 
 Turnover summaries:
 
-$$\text{Total TO} = \sum_{\tau \in \mathcal{T}} \text{TO}_\tau, \qquad
+$$\text{Total TO} = \sum_{\tau \in T} \text{TO}_\tau, \qquad
 \text{Yearly TO} = \frac{\text{Total TO}}{y}, \qquad
 \text{Avg TO} = \frac{1}{T+1} \sum_{t} \text{TO}_t.$$
 
