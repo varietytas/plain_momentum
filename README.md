@@ -179,7 +179,7 @@ $$w_{i,t} = \tilde{w}_{i,\,t-1}.$$
 The gross portfolio return is the weighted sum of asset returns; the net return
 subtracts the day's cost:
 
-$$r^{p}_{t} = \sum_{i=1}^{N} w_{i,t}\, r_{i,t} \;-\; c_{t}.$$
+$$r^{p}_{t} = \sum_{i=1}^{N} w_{i,t} \hspace{1mm} r_{i,t} - c_{t}.$$
 
 > **⚠️ Limitation — close-to-close accounting.** Asset returns $r_{i,t}$ are computed
 > close-to-close (`close.pct_change()`). Signals are formed at one close, the trade is
@@ -197,7 +197,7 @@ On each rebalance date $\tau$, cost is linear in turnover relative to the previo
 of target weights $w^{-}$ (initialized to zero):
 
 $$\text{TO}_\tau = \sum_{i=1}^{N} \big\lvert w_{i,\tau} - w^{-}_{i} \big\rvert,
-\qquad c_\tau = \kappa \, \text{TO}_\tau,$$
+\qquad c_\tau = \kappa \hspace{1mm} \text{TO}_\tau,$$
 
 with $c_t = 0$ on non-rebalance days.
 
@@ -212,10 +212,10 @@ $$E_t = \prod_{s=0}^{t} \big(1 + r^{p}_{s}\big), \qquad E_{-1} \equiv 1.$$
 Computed over the $T + 1$ daily return observations, with $y = \dfrac{T+1}{252}$ the
 sample length in years:
 
-$$\text{Total Return} = E_T - 1, \qquad \text{CAGR} = E_T^{\,1/y} - 1,$$
+$$\text{Total Return} = E_T - 1, \qquad \text{CAGR} = E_T^{1/y} - 1,$$
 
 $$\text{Volatility} = \text{std}(r^{p}) \cdot \sqrt{252}, \qquad
-\text{Sharpe} = \frac{\overline{\,r^{p} - r_f/252\,}}{\text{std}(r^{p})} \cdot \sqrt{252},$$
+\text{Sharpe} = \frac{\overline{r^{p} - r_f/252}}{\text{std}(r^{p})} \cdot \sqrt{252},$$
 
 $$\text{MaxDD} = \min_{t} \frac{E_t - \max_{s \le t} E_s}{\max_{s \le t} E_s}.$$
 
