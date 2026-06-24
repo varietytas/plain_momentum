@@ -266,3 +266,5 @@ The skip window $S = 21$ is currently hardcoded inside the skip-month signals.
 
 This is an educational / research project for studying momentum strategies. All results
 are historical backtests built on simplifying assumptions.
+
+P.S. LaTeX in GitHub is rendered awfully...
